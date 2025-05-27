@@ -31,7 +31,7 @@ clean_names() |>
     Sleep_Location     = factor(sleep_location),
     Stress_Level       = factor(stress_level),
     Date               = as.Date(date, format = "%Y-%m-%d")) |> #
-      select(sleep_duration_hh_ss, reaction_speed_ms, x5_test_avg_ms, sleep_location, stress_level) #
+      select(Date, sleep_duration_hh_ss, reaction_speed_ms, x5_test_avg_ms, sleep_location, stress_level) #
 ```
 
 # Problem 1: Personal Data
