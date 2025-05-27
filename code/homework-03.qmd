@@ -21,4 +21,6 @@ library(janitor) # cleaning data frames
 library(gt) # table making
 library(readxl) # reading excel files
 library(ggeffects) # getting model predictions
+
+reaction_time_data <- read.csv("C:/Users/prais/OneDrive/github/ENVS-193DS_homework-03/data/193ds spread - Sheet1.csv") #adding table to environment
 ```
