@@ -1,26 +1,24 @@
 ---
-title: "homework-03"
-format: html
-editor: visual
+title: "Homework 3"
+author: "Christopher Kiorlinski"
+date: "5/28/2025"
+format:
+  html:
+    toc: true # use this to display a table of contents
+execute:
+  message: false # use this to make sure messages don't show up
+  warning: false # use this to make sure warnings don't show up
+  Repository: <https://github.com/ckiorlinski/ENVS-193DS_homework-03>
 ---
 
-## Quarto
+# 1. Set up
 
-Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see <https://quarto.org>.
-
-## Running Code
-
-When you click the **Render** button a document will be generated that includes both content and the output of embedded code. You can embed code like this:
-
-```{r}
-1 + 1
+```{r packages-and-data}
+# reading in packages
+library(tidyverse) # general use
+library(here) # file organization
+library(janitor) # cleaning data frames
+library(gt) # table making
+library(readxl) # reading excel files
+library(ggeffects) # getting model predictions
 ```
-
-You can add options to executable code like this
-
-```{r}
-#| echo: false
-2 * 2
-```
-
-The `echo: false` option disables the printing of code (only output is displayed).
