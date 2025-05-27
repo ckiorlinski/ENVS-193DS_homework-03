@@ -23,7 +23,15 @@ library(gt) # table making
 library(readxl) # reading excel files
 library(ggeffects) # getting model predictions
 
-reaction_time_data <- read.csv("C:/Users/prais/OneDrive/github/ENVS-193DS_homework-03/data/193ds spread - Sheet1.csv") #adding table to environment
+reaction_time_data <- read.csv("C:/Users/prais/OneDrive/github/ENVS-193DS_homework-03/data/193ds spread - Sheet1.csv") |> #adding table to environment 
+clean_names() |> 
+     mutate(
+    sleep_duration_hrs = period_to_seconds(hm(sleep_duration_hh_ss)) / 3600,
+    Sleep_Duration_c   = scale(sleep_duration_hrs, center = TRUE, scale = FALSE),
+    Sleep_Location     = factor(sleep_location),
+    Stress_Level       = factor(stress_level),
+    Date               = as.Date(date, format = "%Y-%m-%d")) |> #
+      select(sleep_duration_hh_ss, reaction_speed_ms, x5_test_avg_ms, sleep_location, stress_level) #
 ```
 
 # Problem 1: Personal Data
