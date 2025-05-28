@@ -99,8 +99,24 @@ ggplot() +
   theme(plot.caption.position = "plot", #
         plot.caption = element_text(hjust = .5))
 
+#creating presentable table
 
-
+summary_table |> 
+  select(SleepBin, mean_rt, ci_low, ci_high) |> 
+  gt() |> 
+  cols_label(
+    SleepBin = "Sleep Category",
+    mean_rt  = "Mean Reaction Time (ms)",
+    ci_low   = "95% CI Lower",
+    ci_high  = "95% CI Upper"
+  ) |> 
+  tab_header(
+    title = "Reaction Speed Summary by Sleep Category"
+  ) |> 
+  fmt_number(
+    columns = c("mean_rt", "ci_low", "ci_high"),
+    decimals = 1
+  )
 
 ```
 
