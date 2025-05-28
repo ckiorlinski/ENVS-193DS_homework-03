@@ -50,5 +50,56 @@ I could bin recorded days into different sleep lengths, such as "Short (>7 hours
 
 ## b.
 
+```{r}
+# creating summary table
+summary_table <- reaction_time_data |> #
+  group_by(SleepBin) |> #
+  summarize( #
+    mean_rt = mean(reaction_speed_ms, na.rm = TRUE), #
+    se = sd(reaction_speed_ms, na.rm = TRUE)/sqrt(n()), #
+    n = n()
+  ) |> 
+  mutate( #
+    ci_low  = mean_rt - qt(0.975, n-1) * se, #
+    ci_high = mean_rt + qt(0.975, n-1) * se #
+  )
+
+#plotting graph
+ggplot() +
+  geom_jitter(
+    data = reaction_time_data,
+    aes(x = SleepBin, y = reaction_speed_ms, color = SleepBin),
+    width = 0.2, alpha = 0.6, size = 2
+  ) +
+  geom_point(
+    data = summary_table,
+    aes(x = SleepBin, y = mean_rt),
+    color = "black", shape = 18, size = 4
+  ) +
+  geom_errorbar(
+    data = summary_table,
+    aes(x = SleepBin, ymin = ci_low, ymax = ci_high),
+    width = 0.1, color = "black"
+  ) +
+  scale_color_manual(
+    values = c(
+      "Short (<7 h)"     = "#D55E00",
+      "Moderate (7–8 h)" = "#E69F00",
+      "Long (>8 h)"      = "#0072B2"
+    ),
+    guide = FALSE
+  ) +
+  labs(
+    x     = "Sleep Duration Category",
+    y     = "Reaction Speed (milliseconds)",
+    title = "Reaction Speed Varies Across Sleep Duration",
+    caption = "Dots = individual days; black diamonds = group means with 95% CI"
+  ) +
+  theme_bw() #
+
+
+
+
+```
 
 
