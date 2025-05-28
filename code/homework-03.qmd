@@ -48,7 +48,7 @@ clean_names() |>
 
 I could bin recorded days into different sleep lengths, such as "Short (>7 hours)", "Moderate (7-8 hours)", and "Long (<8 hours)", and then find the mean sleep time within each bin because I generally feel more alert when I have had more sleep, so I think Long sleep length will have the best reaction times.
 
-## b.
+## b. & c.
 
 ```{r}
 # creating summary table
@@ -98,7 +98,11 @@ ggplot() +
   theme_bw() + #
   theme(plot.caption.position = "plot", #
         plot.caption = element_text(hjust = .5))
+```
 
+## d.
+
+```{r}
 #creating presentable table
 
 summary_table |> 
@@ -117,7 +121,10 @@ summary_table |>
     columns = c("mean_rt", "ci_low", "ci_high"),
     decimals = 1
   )
-
 ```
 
+# Problem 2: Affective visualization
 
+## a.
+
+Since my personal data has a lot to do with sleep and quality of sleep, I think that it could be cool to use time motifs in my data visualizations. Something along the lines of transitioning from night to day, or transitioning from unfocused to focused in some way. Maybe a figure is blurry and becomes un-blurred as the data moves from low to high sleep, but I don't know how I would make that look good with my data since it is very dramatic. I could also do something eye or brain related given that the crux of the test is reaction speed.
