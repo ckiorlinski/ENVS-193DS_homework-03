@@ -31,12 +31,24 @@ clean_names() |>
     Sleep_Location     = factor(sleep_location),
     Stress_Level       = factor(stress_level),
     Date               = as.Date(date, format = "%Y-%m-%d")) |> #
-      select(Date, sleep_duration_hh_ss, reaction_speed_ms, x5_test_avg_ms, sleep_location, stress_level) #
+  mutate(
+    SleepBin = case_when(
+      sleep_duration_hrs < 7  ~ "Short (<7 h)",
+      sleep_duration_hrs <= 8 ~ "Moderate (7–8 h)",
+      TRUE                     ~ "Long (>8 h)"),
+    SleepBin = factor(
+      SleepBin,
+      levels = c("Short (<7 h)", "Moderate (7–8 h)", "Long (>8 h)"))) |> #
+      select(SleepBin, Date, sleep_duration_hh_ss, reaction_speed_ms, x5_test_avg_ms, sleep_location, stress_level) #
 ```
 
 # Problem 1: Personal Data
 
 ## a. 
 
-I could create a linear regression model to compare the how much influence sleep hours (predictor variable) has on my reaction speed (response variable) because I feel more alert when I get more sleep, so I think more rest will correlate with better reaction scores.
+I could bin recorded days into different sleep lengths, such as "Short (>7 hours)", "Moderate (7-8 hours)", and "Long (<8 hours)", and then find the mean sleep time within each bin because I generally feel more alert when I have had more sleep, so I think Long sleep length will have the best reaction times.
+
+## b.
+
+
 
