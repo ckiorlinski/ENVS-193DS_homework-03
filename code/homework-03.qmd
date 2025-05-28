@@ -127,4 +127,8 @@ summary_table |>
 
 ## a.
 
-Since my personal data has a lot to do with sleep and quality of sleep, I think that it could be cool to use time motifs in my data visualizations. Something along the lines of transitioning from night to day, or transitioning from unfocused to focused in some way. Maybe a figure is blurry and becomes un-blurred as the data moves from low to high sleep, but I don't know how I would make that look good with my data since it is very dramatic. I could also do something eye or brain related given that the crux of the test is reaction speed.
+Since my personal data has a lot to do with sleep and alertness, I think that it could be cool to use time and eye motifs in my data visualizations. To combine these two concepts, I think I can do something along the lines of having a gradient of sky from dark to light within the iris of an eye. These gradients could be centered along the error bars of each sleep bin, with the pupil in the center acting as a round sort of x axis for each bar. I could also include some aspect of blurriness maybe, such as the information on the low sleep side of the eye being more blurry, but I don't know what code that would take and if that would make my concept less clear.
+
+## b.
+
+
