@@ -95,7 +95,9 @@ ggplot() +
     title = "Reaction Speed Varies Across Sleep Duration",
     caption = "Dots = individual days; black diamonds = group means with 95% CI"
   ) +
-  theme_bw() #
+  theme_bw() + #
+  theme(plot.caption.position = "plot", #
+        plot.caption = element_text(hjust = .5))
 
 
 
