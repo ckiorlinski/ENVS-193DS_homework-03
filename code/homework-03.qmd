@@ -140,7 +140,13 @@ Since my personal data has a lot to do with sleep and alertness, I think that it
 
 ## d.
 
+With this piece, I am attempting to showcase the takeaway of my experiment, which is that the amount of sleep has an effect on the reaction speed score on an online speed test immediately after waking up. The data was collected over two months and sorted into three bins: short (<7 h), moderate (7–8 h), and long (>8 h), and then mean sleep time was compared across bins.
 
+When creating this piece, I wanted to incorporate several relevant themes into the visualization of this data, including concepts of tiredness, energy, and alertness. Although it might not look explicitly similar, I took a lot of inspiration from Jill Pelto's paintings, specifically their ingraining of the geometry of the line in the art.
+
+The form of my work is a drawn picture on paper using a combination of colored pencils, markers, lead pencils, and more. Conceptually, each bin is represented by a neuron with each data point being represented by a dendrite upon the axon, which is itself a representation of the error bars. The hope is to show that more sleep creates more complex neural connections with shorter pathways.
+
+Before it took this form, my first sketch had more of a night and day gradient motif using an eye to stage the data, but I didn't like it very much and scrapped it. This version was sketched in MS Paint before being put to paper and drawn with strong lines and colors.
 
 # Problem 3: Statistical critique
 
