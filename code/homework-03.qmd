@@ -127,7 +127,7 @@ summary_table |>
 
 ## a.
 
-Since my personal data has a lot to do with sleep and alertness, I think that it could be cool to use time and eye motifs in my data visualizations. To combine these two concepts, I think I can do something along the lines of having a gradient of sky from dark to light within the iris of an eye. These gradients could be centered along the error bars of each sleep bin, with the pupil in the center acting as a round sort of x axis for each bar. I could also include some aspect of blurriness maybe, such as the information on the low sleep side of the eye being more blurry, but I don't know what code that would take and if that would make my concept less clear.
+Since my personal data has a lot to do with sleep and alertness, I think that it could be cool to use brain and neuron motifs in my data visualizations. To combine these two concepts, I think I can do something along the lines of having a brain encase/be the background for a graph that uses neurons to show points. Each neuron could be connected to the next in a series of three and dendrite on the neuron could represent with a point from the graph. The goal would be to show that more sleep creates more brain connections, increasing reaction speed. I could also include some aspect of electricity or energy, such as electric effects that intensify as the reaction speeds decrease.
 
 ## b.
 
@@ -137,13 +137,7 @@ Since my personal data has a lot to do with sleep and alertness, I think that it
 
 ## d.
 
-With this piece, I am attempting to showcase the takeaway of my experiment, which is that the amount of sleep has an effect on the reaction speed score on an online speed test immediately after waking up. The data was collected over two months and sorted into three bins: short (<7 h), moderate (7–8 h), and long (>8 h), and then mean sleep time was compared across bins.
 
-When creating this piece, I wanted to incorporate several relevant themes into the visualization of this data, including concepts of tiredness, alertness, night, day, blurriness, and sharpness. Although it might not look explicitly similar, I took a lot of inspiration from Jill Pelto's paintings, specifically their ingraining of the geometry of the line in the art.
-
-The form of my work is a drawn picture on paper using a combination of colored pencils, markers, lead pencils, and more. This allows for direct control of specific line geometry, such as the almond shape.
-
-The work started off as a messy sketch on MS Paint, then became a more refined pencil sketch with specific details and motiffs. After the drawn sketch was finalized and approved, a final work was drawn on new paper with strong colors and deep lines.
 
 
 # Problem 3: Statistical critique
