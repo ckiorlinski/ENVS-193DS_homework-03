@@ -131,4 +131,21 @@ Since my personal data has a lot to do with sleep and alertness, I think that it
 
 ## b.
 
+![Reaction Speed Sketch](nuerons.png)
 
+## c.
+
+## d.
+
+With this piece, I am attempting to showcase the takeaway of my experiment, which is that the amount of sleep has an effect on the reaction speed score on an online speed test immediately after waking up. The data was collected over two months and sorted into three bins: short (<7 h), moderate (7–8 h), and long (>8 h), and then mean sleep time was compared across bins.
+
+When creating this piece, I wanted to incorporate several relevant themes into the visualization of this data, including concepts of tiredness, alertness, night, day, blurriness, and sharpness. Although it might not look explicitly similar, I took a lot of inspiration from Jill Pelto's paintings, specifically their ingraining of the geometry of the line in the art.
+
+The form of my work is a drawn picture on paper using a combination of colored pencils, markers, lead pencils, and more. This allows for direct control of specific line geometry, such as the almond shape.
+
+The work started off as a messy sketch on MS Paint, then became a more refined pencil sketch with specific details and motiffs. After the drawn sketch was finalized and approved, a final work was drawn on new paper with strong colors and deep lines.
+
+
+# Problem 3: Statistical critique
+
+## a.
