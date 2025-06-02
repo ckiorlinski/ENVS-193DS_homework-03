@@ -152,3 +152,11 @@ Before it took this form, my first sketch had more of a night and day gradient m
 ## a.
 
 They employed linear regression, both multiple and single, with the single linear regression found not the be a good assessment tool for the data. The response variable was the specific methane production, which had multiple metrics such as NL CH₄/kg and NLbiogas/kg. The predictor variables included organic loading rate (OLR), lignin content, and other factors pertaining to the preparation and makeup of the waste being processed. To form their linear regression model equations, the researchers evaluated the correlation among variables via a Pearson's correlation matrix, which is what I am including below.
+
+![Pearson Correlation Matrix](pearsontable.png)
+
+## b.
+
+Given that this table informs the creation of the MLR equation model and there is no other figure describing the MLR besides model validation graphs (what I used mistakenly for HW 2), I do not feel that this table does an adequate job of representing the underlying tests. It states that this table a "Pearson's Correlation Matrix", but does not showcase any sort of explanation for what that represents, nor how those values were achieved. It also highlights which correlation scores are significant, but does not explain or show how the correlation scores were translated into p values. I had to look up myseld how some correlation scores could be higher than others but not significant, which shows the failing in the representation.
+
+
