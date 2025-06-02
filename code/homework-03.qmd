@@ -44,9 +44,9 @@ clean_names() |>
 
 # Problem 1: Personal Data
 
-## a. 
+## a.
 
-I could bin recorded days into different sleep lengths, such as "Short (>7 hours)", "Moderate (7-8 hours)", and "Long (<8 hours)", and then find the mean sleep time within each bin because I generally feel more alert when I have had more sleep, so I think Long sleep length will have the best reaction times.
+I could bin recorded days into different sleep lengths, such as "Short (\>7 hours)", "Moderate (7-8 hours)", and "Long (\<8 hours)", and then find the mean sleep time within each bin because I generally feel more alert when I have had more sleep, so I think Long sleep length will have the best reaction times.
 
 ## b. & c.
 
@@ -135,12 +135,11 @@ Since my personal data has a lot to do with sleep and alertness, I think that it
 
 ## c.
 
-
 ![Reaction Speed Sketch](nueronsfinal.png)
 
 ## d.
 
-With this piece, I am attempting to showcase the takeaway of my experiment, which is that the amount of sleep has an effect on the reaction speed score on an online speed test immediately after waking up. The data was collected over two months and sorted into three bins: short (<7 h), moderate (7–8 h), and long (>8 h), and then mean sleep time was compared across bins.
+With this piece, I am attempting to showcase the takeaway of my experiment, which is that the amount of sleep has an effect on the reaction speed score on an online speed test immediately after waking up. The data was collected over two months and sorted into three bins: short (\<7 h), moderate (7–8 h), and long (\>8 h), and then mean sleep time was compared across bins.
 
 When creating this piece, I wanted to incorporate several relevant themes into the visualization of this data, including concepts of tiredness, energy, and alertness. Although it might not look explicitly similar, I took a lot of inspiration from Jill Pelto's paintings, specifically their ingraining of the geometry of the line in the art.
 
@@ -151,3 +150,5 @@ Before it took this form, my first sketch had more of a night and day gradient m
 # Problem 3: Statistical critique
 
 ## a.
+
+They employed linear regression, both multiple and single, with the single linear regression found not the be a good assessment tool for the data. The response variable was the specific methane production, which had multiple metrics such as NL CH₄/kg and NLbiogas/kg. The predictor variables included organic loading rate (OLR), lignin content, and other factors pertaining to the preparation and makeup of the waste being processed. To form their linear regression model equations, the researchers evaluated the correlation among variables via a Pearson's correlation matrix, which is what I am including below.
