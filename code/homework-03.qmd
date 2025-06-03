@@ -165,6 +165,6 @@ The visual clutter is horrible in this table to be completely honest, to the poi
 
 ## d.
 
-
+I would make multiple changes to the table in order to improve its visual clarity and usefulness. Firstly, as described above, I would remove all the unnecessary information from the matrix. If the main goal is the analyze SMP, as stated in the research paper, then an entire matrix is not necessary for analysis and only serves to introduce needless information. At the very least, I would introduce a new graphic to precede the matrix that holds only the row with SMP in case the matrix is useful in a way I am not understanding. I would also increase the bolding or increase the type size to draw more attention to important metrics. Finally, I would do some more explaining or showcase more about the underlying functions, including how the correlation values convert to p values and n values.
 
 
