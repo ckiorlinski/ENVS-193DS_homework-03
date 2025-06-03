@@ -98,6 +98,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#problem-3-statistical-critique" id="toc-problem-3-statistical-critique" class="nav-link" data-scroll-target="#problem-3-statistical-critique">Problem 3: Statistical critique</a>
   <ul class="collapse">
   <li><a href="#a.-2" id="toc-a.-2" class="nav-link" data-scroll-target="#a.-2">a.</a></li>
+  <li><a href="#b.-1" id="toc-b.-1" class="nav-link" data-scroll-target="#b.-1">b.</a></li>
+  <li><a href="#c.-1" id="toc-c.-1" class="nav-link" data-scroll-target="#c.-1">c.</a></li>
+  <li><a href="#d.-2" id="toc-d.-2" class="nav-link" data-scroll-target="#d.-2">d.</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -148,22 +151,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggeffects) <span class="co"># getting model predictions</span></span>
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>reaction_time_data <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"C:/Users/prais/OneDrive/github/ENVS-193DS_homework-03/data/193ds spread - Sheet1.csv"</span>) <span class="sc">|&gt;</span> <span class="co">#adding table to environment </span></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="fu">clean_names</span>() <span class="sc">|&gt;</span> </span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="fu">clean_names</span>() <span class="sc">|&gt;</span> <span class="co">#cleaning names</span></span>
 <span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>     <span class="fu">mutate</span>(</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">sleep_duration_hrs =</span> <span class="fu">period_to_seconds</span>(<span class="fu">hm</span>(sleep_duration_hh_ss)) <span class="sc">/</span> <span class="dv">3600</span>,</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">Sleep_Duration_c   =</span> <span class="fu">scale</span>(sleep_duration_hrs, <span class="at">center =</span> <span class="cn">TRUE</span>, <span class="at">scale =</span> <span class="cn">FALSE</span>),</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">Sleep_Location     =</span> <span class="fu">factor</span>(sleep_location),</span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">Stress_Level       =</span> <span class="fu">factor</span>(stress_level),</span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">Date               =</span> <span class="fu">as.Date</span>(date, <span class="at">format =</span> <span class="st">"%Y-%m-%d"</span>)) <span class="sc">|&gt;</span> <span class="co">#</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">sleep_duration_hrs =</span> <span class="fu">period_to_seconds</span>(<span class="fu">hm</span>(sleep_duration_hh_ss)) <span class="sc">/</span> <span class="dv">3600</span>, <span class="co">#changing format of sleep hours data</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">Sleep_Duration_c   =</span> <span class="fu">scale</span>(sleep_duration_hrs, <span class="at">center =</span> <span class="cn">TRUE</span>, <span class="at">scale =</span> <span class="cn">FALSE</span>), <span class="co"># scaling sleep duration colummn</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">Sleep_Location     =</span> <span class="fu">factor</span>(sleep_location), <span class="co"># making sleep location a factor</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">Stress_Level       =</span> <span class="fu">factor</span>(stress_level), <span class="co"># making stress level a factor</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">Date               =</span> <span class="fu">as.Date</span>(date, <span class="at">format =</span> <span class="st">"%Y-%m-%d"</span>)) <span class="sc">|&gt;</span> <span class="co"># reformating date data</span></span>
 <span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">SleepBin =</span> <span class="fu">case_when</span>(</span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>      sleep_duration_hrs <span class="sc">&lt;</span> <span class="dv">7</span>  <span class="sc">~</span> <span class="st">"Short (&lt;7 h)"</span>,</span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>      sleep_duration_hrs <span class="sc">&lt;=</span> <span class="dv">8</span> <span class="sc">~</span> <span class="st">"Moderate (7–8 h)"</span>,</span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>      <span class="cn">TRUE</span>                     <span class="sc">~</span> <span class="st">"Long (&gt;8 h)"</span>),</span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">SleepBin =</span> <span class="fu">factor</span>(</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">SleepBin =</span> <span class="fu">case_when</span>( <span class="co">#creating bins</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>      sleep_duration_hrs <span class="sc">&lt;</span> <span class="dv">7</span>  <span class="sc">~</span> <span class="st">"Short (&lt;7 h)"</span>, <span class="co">#creating short bin</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>      sleep_duration_hrs <span class="sc">&lt;=</span> <span class="dv">8</span> <span class="sc">~</span> <span class="st">"Moderate (7–8 h)"</span>, <span class="co">#creating moderate bin</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>      <span class="cn">TRUE</span>                     <span class="sc">~</span> <span class="st">"Long (&gt;8 h)"</span>), <span class="co">#creating long bin</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">SleepBin =</span> <span class="fu">factor</span>( <span class="co">#creating order of factors</span></span>
 <span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>      SleepBin,</span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>      <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"Short (&lt;7 h)"</span>, <span class="st">"Moderate (7–8 h)"</span>, <span class="st">"Long (&gt;8 h)"</span>))) <span class="sc">|&gt;</span> <span class="co">#</span></span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>      <span class="fu">select</span>(SleepBin, Date, sleep_duration_hh_ss, reaction_speed_ms, x5_test_avg_ms, sleep_location, stress_level) <span class="co">#</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>      <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"Short (&lt;7 h)"</span>, <span class="st">"Moderate (7–8 h)"</span>, <span class="st">"Long (&gt;8 h)"</span>))) <span class="sc">|&gt;</span> <span class="co"># ordering sleep bin factors</span></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>      <span class="fu">select</span>(SleepBin, Date, sleep_duration_hh_ss, reaction_speed_ms, x5_test_avg_ms, sleep_location, stress_level) <span class="co">#selecting important info</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="problem-1-personal-data" class="level1">
@@ -176,36 +179,36 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="b.-c.">b. &amp; c.</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># creating summary table</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>summary_table <span class="ot">&lt;-</span> reaction_time_data <span class="sc">|&gt;</span> <span class="co">#</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(SleepBin) <span class="sc">|&gt;</span> <span class="co">#</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>( <span class="co">#</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean_rt =</span> <span class="fu">mean</span>(reaction_speed_ms, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="co">#</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">se =</span> <span class="fu">sd</span>(reaction_speed_ms, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)<span class="sc">/</span><span class="fu">sqrt</span>(<span class="fu">n</span>()), <span class="co">#</span></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">n =</span> <span class="fu">n</span>()</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>summary_table <span class="ot">&lt;-</span> reaction_time_data <span class="sc">|&gt;</span> <span class="co"># creating summary table from reaction time data</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(SleepBin) <span class="sc">|&gt;</span> <span class="co"># grouping by bin</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>( </span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean_rt =</span> <span class="fu">mean</span>(reaction_speed_ms, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="co"># calculating mean reaction time</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">se =</span> <span class="fu">sd</span>(reaction_speed_ms, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)<span class="sc">/</span><span class="fu">sqrt</span>(<span class="fu">n</span>()), <span class="co">#creating standard error from standard deviation</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">n =</span> <span class="fu">n</span>() <span class="co">#number of data points </span></span>
 <span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span> </span>
 <span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>( <span class="co">#</span></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">ci_low  =</span> mean_rt <span class="sc">-</span> <span class="fu">qt</span>(<span class="fl">0.975</span>, n<span class="dv">-1</span>) <span class="sc">*</span> se, <span class="co">#</span></span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">ci_high =</span> mean_rt <span class="sc">+</span> <span class="fu">qt</span>(<span class="fl">0.975</span>, n<span class="dv">-1</span>) <span class="sc">*</span> se <span class="co">#</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">ci_low  =</span> mean_rt <span class="sc">-</span> <span class="fu">qt</span>(<span class="fl">0.975</span>, n<span class="dv">-1</span>) <span class="sc">*</span> se, <span class="co"># calculating low end of CI</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">ci_high =</span> mean_rt <span class="sc">+</span> <span class="fu">qt</span>(<span class="fl">0.975</span>, n<span class="dv">-1</span>) <span class="sc">*</span> se <span class="co"># calculating high end of CI</span></span>
 <span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>  )</span>
 <span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="co">#plotting graph</span></span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(</span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> reaction_time_data,</span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">x =</span> SleepBin, <span class="at">y =</span> reaction_speed_ms, <span class="at">color =</span> SleepBin),</span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">width =</span> <span class="fl">0.2</span>, <span class="at">alpha =</span> <span class="fl">0.6</span>, <span class="at">size =</span> <span class="dv">2</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span> <span class="co">#creating graphic</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>( <span class="co">#creating jitterplot</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> reaction_time_data, <span class="co">#using reaction time data</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">x =</span> SleepBin, <span class="at">y =</span> reaction_speed_ms, <span class="at">color =</span> SleepBin), <span class="co">#setting x and y axis and color</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">width =</span> <span class="fl">0.2</span>, <span class="at">alpha =</span> <span class="fl">0.6</span>, <span class="at">size =</span> <span class="dv">2</span> <span class="co">#setting width and transperancy</span></span>
 <span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(</span>
-<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> summary_table,</span>
-<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">x =</span> SleepBin, <span class="at">y =</span> mean_rt),</span>
-<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"black"</span>, <span class="at">shape =</span> <span class="dv">18</span>, <span class="at">size =</span> <span class="dv">4</span></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>( <span class="co">#setting mean point</span></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> summary_table, <span class="co"># summary table data</span></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">x =</span> SleepBin, <span class="at">y =</span> mean_rt), <span class="co">#setting x and y axis</span></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"black"</span>, <span class="at">shape =</span> <span class="dv">18</span>, <span class="at">size =</span> <span class="dv">4</span> <span class="co">#setting symbology</span></span>
 <span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_errorbar</span>(</span>
-<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> summary_table,</span>
-<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">x =</span> SleepBin, <span class="at">ymin =</span> ci_low, <span class="at">ymax =</span> ci_high),</span>
-<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>    <span class="at">width =</span> <span class="fl">0.1</span>, <span class="at">color =</span> <span class="st">"black"</span></span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_errorbar</span>( <span class="co">#creating error bar</span></span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> summary_table, <span class="co">#using summary table data</span></span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">x =</span> SleepBin, <span class="at">ymin =</span> ci_low, <span class="at">ymax =</span> ci_high), <span class="co">#setting x andy axis, and error bar extent</span></span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>    <span class="at">width =</span> <span class="fl">0.1</span>, <span class="at">color =</span> <span class="st">"black"</span> <span class="co">#setting symbology</span></span>
 <span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(</span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>( <span class="co">#setting colors</span></span>
 <span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>    <span class="at">values =</span> <span class="fu">c</span>(</span>
 <span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Short (&lt;7 h)"</span>     <span class="ot">=</span> <span class="st">"#D55E00"</span>,</span>
 <span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Moderate (7–8 h)"</span> <span class="ot">=</span> <span class="st">"#E69F00"</span>,</span>
@@ -213,11 +216,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>    ),</span>
 <span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a>    <span class="at">guide =</span> <span class="cn">FALSE</span></span>
 <span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a>    <span class="at">x     =</span> <span class="st">"Sleep Duration Category"</span>,</span>
-<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a>    <span class="at">y     =</span> <span class="st">"Reaction Speed (milliseconds)"</span>,</span>
-<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Reaction Speed Varies Across Sleep Duration"</span>,</span>
-<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption =</span> <span class="st">"Dots = individual days; black diamonds = group means with 95% CI"</span></span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>( <span class="co">#setting titles</span></span>
+<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a>    <span class="at">x     =</span> <span class="st">"Sleep Duration Category"</span>, <span class="co"># x axis</span></span>
+<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a>    <span class="at">y     =</span> <span class="st">"Reaction Speed (milliseconds)"</span>, <span class="co"># y axis</span></span>
+<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Reaction Speed Varies Across Sleep Duration"</span>, <span class="co"># graph title</span></span>
+<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption =</span> <span class="st">"*Figure 1: Getting less than 7 hours of sleep causes a steep decline in reaction time.* </span><span class="sc">\n</span><span class="st"> Each point is colored according to its respective bin, which is categorized based on time of sleep. </span><span class="sc">\n</span><span class="st"> The black center dot represents the overall bin mean, with the error bar representing the confidence interval. "</span> <span class="co">#</span></span>
 <span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
 <span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span> <span class="co">#</span></span>
 <span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.caption.position =</span> <span class="st">"plot"</span>, <span class="co">#</span></span>
@@ -253,23 +256,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">decimals =</span> <span class="dv">1</span></span>
 <span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="kxhouovnow" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#kxhouovnow table {
+<div id="hgzxtmigzh" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#hgzxtmigzh table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#kxhouovnow thead, #kxhouovnow tbody, #kxhouovnow tfoot, #kxhouovnow tr, #kxhouovnow td, #kxhouovnow th {
+#hgzxtmigzh thead, #hgzxtmigzh tbody, #hgzxtmigzh tfoot, #hgzxtmigzh tr, #hgzxtmigzh td, #hgzxtmigzh th {
   border-style: none;
 }
 
-#kxhouovnow p {
+#hgzxtmigzh p {
   margin: 0;
   padding: 0;
 }
 
-#kxhouovnow .gt_table {
+#hgzxtmigzh .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -295,12 +298,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-left-color: #D3D3D3;
 }
 
-#kxhouovnow .gt_caption {
+#hgzxtmigzh .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#kxhouovnow .gt_title {
+#hgzxtmigzh .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -312,7 +315,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-bottom-width: 0;
 }
 
-#kxhouovnow .gt_subtitle {
+#hgzxtmigzh .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -324,7 +327,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-top-width: 0;
 }
 
-#kxhouovnow .gt_heading {
+#hgzxtmigzh .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -336,13 +339,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-right-color: #D3D3D3;
 }
 
-#kxhouovnow .gt_bottom_border {
+#hgzxtmigzh .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#kxhouovnow .gt_col_headings {
+#hgzxtmigzh .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -357,7 +360,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-right-color: #D3D3D3;
 }
 
-#kxhouovnow .gt_col_heading {
+#hgzxtmigzh .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -377,7 +380,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   overflow-x: hidden;
 }
 
-#kxhouovnow .gt_column_spanner_outer {
+#hgzxtmigzh .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -389,15 +392,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 4px;
 }
 
-#kxhouovnow .gt_column_spanner_outer:first-child {
+#hgzxtmigzh .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#kxhouovnow .gt_column_spanner_outer:last-child {
+#hgzxtmigzh .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#kxhouovnow .gt_column_spanner {
+#hgzxtmigzh .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -409,11 +412,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   width: 100%;
 }
 
-#kxhouovnow .gt_spanner_row {
+#hgzxtmigzh .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#kxhouovnow .gt_group_heading {
+#hgzxtmigzh .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -439,7 +442,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   text-align: left;
 }
 
-#kxhouovnow .gt_empty_group_heading {
+#hgzxtmigzh .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -454,15 +457,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   vertical-align: middle;
 }
 
-#kxhouovnow .gt_from_md > :first-child {
+#hgzxtmigzh .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#kxhouovnow .gt_from_md > :last-child {
+#hgzxtmigzh .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#kxhouovnow .gt_row {
+#hgzxtmigzh .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -481,7 +484,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   overflow-x: hidden;
 }
 
-#kxhouovnow .gt_stub {
+#hgzxtmigzh .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -494,7 +497,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#kxhouovnow .gt_stub_row_group {
+#hgzxtmigzh .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -508,15 +511,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   vertical-align: top;
 }
 
-#kxhouovnow .gt_row_group_first td {
+#hgzxtmigzh .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#kxhouovnow .gt_row_group_first th {
+#hgzxtmigzh .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#kxhouovnow .gt_summary_row {
+#hgzxtmigzh .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -526,16 +529,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#kxhouovnow .gt_first_summary_row {
+#hgzxtmigzh .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#kxhouovnow .gt_first_summary_row.thick {
+#hgzxtmigzh .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#kxhouovnow .gt_last_summary_row {
+#hgzxtmigzh .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -545,7 +548,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-bottom-color: #D3D3D3;
 }
 
-#kxhouovnow .gt_grand_summary_row {
+#hgzxtmigzh .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -555,7 +558,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#kxhouovnow .gt_first_grand_summary_row {
+#hgzxtmigzh .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -565,7 +568,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-top-color: #D3D3D3;
 }
 
-#kxhouovnow .gt_last_grand_summary_row_top {
+#hgzxtmigzh .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -575,11 +578,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-bottom-color: #D3D3D3;
 }
 
-#kxhouovnow .gt_striped {
+#hgzxtmigzh .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#kxhouovnow .gt_table_body {
+#hgzxtmigzh .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -588,7 +591,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-bottom-color: #D3D3D3;
 }
 
-#kxhouovnow .gt_footnotes {
+#hgzxtmigzh .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -602,7 +605,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-right-color: #D3D3D3;
 }
 
-#kxhouovnow .gt_footnote {
+#hgzxtmigzh .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -611,7 +614,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#kxhouovnow .gt_sourcenotes {
+#hgzxtmigzh .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -625,7 +628,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-right-color: #D3D3D3;
 }
 
-#kxhouovnow .gt_sourcenote {
+#hgzxtmigzh .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -633,72 +636,72 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#kxhouovnow .gt_left {
+#hgzxtmigzh .gt_left {
   text-align: left;
 }
 
-#kxhouovnow .gt_center {
+#hgzxtmigzh .gt_center {
   text-align: center;
 }
 
-#kxhouovnow .gt_right {
+#hgzxtmigzh .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#kxhouovnow .gt_font_normal {
+#hgzxtmigzh .gt_font_normal {
   font-weight: normal;
 }
 
-#kxhouovnow .gt_font_bold {
+#hgzxtmigzh .gt_font_bold {
   font-weight: bold;
 }
 
-#kxhouovnow .gt_font_italic {
+#hgzxtmigzh .gt_font_italic {
   font-style: italic;
 }
 
-#kxhouovnow .gt_super {
+#hgzxtmigzh .gt_super {
   font-size: 65%;
 }
 
-#kxhouovnow .gt_footnote_marks {
+#hgzxtmigzh .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#kxhouovnow .gt_asterisk {
+#hgzxtmigzh .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#kxhouovnow .gt_indent_1 {
+#hgzxtmigzh .gt_indent_1 {
   text-indent: 5px;
 }
 
-#kxhouovnow .gt_indent_2 {
+#hgzxtmigzh .gt_indent_2 {
   text-indent: 10px;
 }
 
-#kxhouovnow .gt_indent_3 {
+#hgzxtmigzh .gt_indent_3 {
   text-indent: 15px;
 }
 
-#kxhouovnow .gt_indent_4 {
+#hgzxtmigzh .gt_indent_4 {
   text-indent: 20px;
 }
 
-#kxhouovnow .gt_indent_5 {
+#hgzxtmigzh .gt_indent_5 {
   text-indent: 25px;
 }
 
-#kxhouovnow .katex-display {
+#hgzxtmigzh .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#kxhouovnow div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#hgzxtmigzh div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -778,6 +781,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h1>Problem 3: Statistical critique</h1>
 <section id="a.-2" class="level2">
 <h2 class="anchored" data-anchor-id="a.-2">a.</h2>
+<p>They employed linear regression, both multiple and single, with the single linear regression found not the be a good assessment tool for the data. The response variable was the specific methane production, which had multiple metrics such as NL CH₄/kg and NLbiogas/kg. The predictor variables included organic loading rate (OLR), lignin content, and other factors pertaining to the preparation and makeup of the waste being processed. To form their linear regression model equations, the researchers evaluated the correlation among variables via a Pearson’s correlation matrix, which is what I am including below.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="pearsontable.png" class="img-fluid figure-img"></p>
+<figcaption>Pearson Correlation Matrix</figcaption>
+</figure>
+</div>
+</section>
+<section id="b.-1" class="level2">
+<h2 class="anchored" data-anchor-id="b.-1">b.</h2>
+<p>Given that this table informs the creation of the MLR equation model and there is no other figure describing the MLR besides model validation graphs (what I used mistakenly for HW 2), I do not feel that this table does an adequate job of representing the underlying tests. It states that this table a “Pearson’s Correlation Matrix”, but does not showcase any sort of explanation for what that represents, nor how those values were achieved. It also highlights which correlation scores are significant, but does not explain or show how the correlation scores were translated into p values. I had to look up myseld how some correlation scores could be higher than others but not significant, which shows the failing in the representation.</p>
+</section>
+<section id="c.-1" class="level2">
+<h2 class="anchored" data-anchor-id="c.-1">c.</h2>
+<p>The visual clutter is horrible in this table to be completely honest, to the point where it almost ruins the usability of the graph for me. The only useful piece of information from the table is the first column/row because we are trying to find what variables correlate with SMP to create a regression equation, so the entire rest of the matrix is unneeded for our analysis. The use of bolding to indicate significant correlation values is okay and draws attention to the important values, but suffers from the excessive clutter of the table.</p>
+</section>
+<section id="d.-2" class="level2">
+<h2 class="anchored" data-anchor-id="d.-2">d.</h2>
+<p>I would make multiple changes to the table in order to improve its visual clarity and usefulness. Firstly, as described above, I would remove all the unnecessary information from the matrix. If the main goal is the analyze SMP, as stated in the research paper, then an entire matrix is not necessary for analysis and only serves to introduce needless information. At the very least, I would introduce a new graphic to precede the matrix that holds only the row with SMP in case the matrix is useful in a way I am not understanding. I would also increase the bolding or increase the type size to draw more attention to important metrics. Finally, I would do some more explaining or showcase more about the underlying functions, including how the correlation values convert to p values and n values.</p>
 </section>
 </section>
 
