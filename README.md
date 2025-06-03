@@ -13,4 +13,4 @@ The main folder with all the data is homework-03.qmd.
 
 ## Rendered Ooutput
 
-The rendered output for the code in this repository is [here.](https://ckiorlinski.github.io/ENVS-193DS_homework-03/code/homework-03.html)
+The rendered output for the code in this repository is at https://ckiorlinski.github.io/ENVS-193DS_homework-03/code/homework-03.html (i cant get linking it to a message to work sorry)
