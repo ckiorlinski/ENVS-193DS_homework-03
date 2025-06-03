@@ -13,5 +13,5 @@ The main folder with all the data is homework-03.qmd.
 
 ## Rendered Ooutput
 
-The rendered output for the code in this repository is [here.](homework-03.html)
+The rendered output for the code in this repository is [here.](code/homework-03.html)
 
