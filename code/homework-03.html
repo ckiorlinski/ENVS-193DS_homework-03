@@ -220,10 +220,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a>    <span class="at">x     =</span> <span class="st">"Sleep Duration Category"</span>, <span class="co"># x axis</span></span>
 <span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a>    <span class="at">y     =</span> <span class="st">"Reaction Speed (milliseconds)"</span>, <span class="co"># y axis</span></span>
 <span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Reaction Speed Varies Across Sleep Duration"</span>, <span class="co"># graph title</span></span>
-<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption =</span> <span class="st">"*Figure 1: Getting less than 7 hours of sleep causes a steep decline in reaction time.* </span><span class="sc">\n</span><span class="st"> Each point is colored according to its respective bin, which is categorized based on time of sleep. </span><span class="sc">\n</span><span class="st"> The black center dot represents the overall bin mean, with the error bar representing the confidence interval. "</span> <span class="co">#</span></span>
+<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption =</span> <span class="st">"Figure 1: Getting less than 7 hours of sleep causes a steep decline in reaction time. </span><span class="sc">\n</span><span class="st"> Each point is colored according to its respective bin, which is categorized based on time of sleep. </span><span class="sc">\n</span><span class="st"> The black center dot represents the overall bin mean, with the error bar representing the confidence interval. "</span> <span class="co"># graph caption</span></span>
 <span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span> <span class="co">#</span></span>
-<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.caption.position =</span> <span class="st">"plot"</span>, <span class="co">#</span></span>
+<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span> <span class="co"># theme black white</span></span>
+<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.caption.position =</span> <span class="st">"plot"</span>, <span class="co"># position of caption</span></span>
 <span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a>        <span class="at">plot.caption =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> .<span class="dv">5</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
@@ -239,40 +239,40 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">#creating presentable table</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>summary_table <span class="sc">|&gt;</span> </span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(SleepBin, mean_rt, ci_low, ci_high) <span class="sc">|&gt;</span> </span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>() <span class="sc">|&gt;</span> </span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cols_label</span>(</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">SleepBin =</span> <span class="st">"Sleep Category"</span>,</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>summary_table <span class="sc">|&gt;</span> <span class="co"># creating summary tabke</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(SleepBin, mean_rt, ci_low, ci_high) <span class="sc">|&gt;</span> <span class="co"># selecting relevant columns</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>() <span class="sc">|&gt;</span> <span class="co"># table making software</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cols_label</span>( <span class="co">#labeling columns in table</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">SleepBin =</span> <span class="st">"Sleep Category"</span>, </span>
 <span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean_rt  =</span> <span class="st">"Mean Reaction Time (ms)"</span>,</span>
 <span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">ci_low   =</span> <span class="st">"95% CI Lower"</span>,</span>
 <span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">ci_high  =</span> <span class="st">"95% CI Upper"</span></span>
 <span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span> </span>
 <span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_header</span>(</span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Reaction Speed Summary by Sleep Category"</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Reaction Speed Summary by Sleep Category"</span> <span class="co">#table title</span></span>
 <span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span> </span>
 <span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fmt_number</span>(</span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">columns =</span> <span class="fu">c</span>(<span class="st">"mean_rt"</span>, <span class="st">"ci_low"</span>, <span class="st">"ci_high"</span>),</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">columns =</span> <span class="fu">c</span>(<span class="st">"mean_rt"</span>, <span class="st">"ci_low"</span>, <span class="st">"ci_high"</span>), <span class="co">#rounding values</span></span>
 <span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">decimals =</span> <span class="dv">1</span></span>
 <span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="hgzxtmigzh" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#hgzxtmigzh table {
+<div id="pekwiudpvc" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#pekwiudpvc table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#hgzxtmigzh thead, #hgzxtmigzh tbody, #hgzxtmigzh tfoot, #hgzxtmigzh tr, #hgzxtmigzh td, #hgzxtmigzh th {
+#pekwiudpvc thead, #pekwiudpvc tbody, #pekwiudpvc tfoot, #pekwiudpvc tr, #pekwiudpvc td, #pekwiudpvc th {
   border-style: none;
 }
 
-#hgzxtmigzh p {
+#pekwiudpvc p {
   margin: 0;
   padding: 0;
 }
 
-#hgzxtmigzh .gt_table {
+#pekwiudpvc .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -298,12 +298,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-left-color: #D3D3D3;
 }
 
-#hgzxtmigzh .gt_caption {
+#pekwiudpvc .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#hgzxtmigzh .gt_title {
+#pekwiudpvc .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -315,7 +315,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-bottom-width: 0;
 }
 
-#hgzxtmigzh .gt_subtitle {
+#pekwiudpvc .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -327,7 +327,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-top-width: 0;
 }
 
-#hgzxtmigzh .gt_heading {
+#pekwiudpvc .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -339,13 +339,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-right-color: #D3D3D3;
 }
 
-#hgzxtmigzh .gt_bottom_border {
+#pekwiudpvc .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#hgzxtmigzh .gt_col_headings {
+#pekwiudpvc .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -360,7 +360,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-right-color: #D3D3D3;
 }
 
-#hgzxtmigzh .gt_col_heading {
+#pekwiudpvc .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -380,7 +380,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   overflow-x: hidden;
 }
 
-#hgzxtmigzh .gt_column_spanner_outer {
+#pekwiudpvc .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -392,15 +392,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 4px;
 }
 
-#hgzxtmigzh .gt_column_spanner_outer:first-child {
+#pekwiudpvc .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#hgzxtmigzh .gt_column_spanner_outer:last-child {
+#pekwiudpvc .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#hgzxtmigzh .gt_column_spanner {
+#pekwiudpvc .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -412,11 +412,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   width: 100%;
 }
 
-#hgzxtmigzh .gt_spanner_row {
+#pekwiudpvc .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#hgzxtmigzh .gt_group_heading {
+#pekwiudpvc .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -442,7 +442,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   text-align: left;
 }
 
-#hgzxtmigzh .gt_empty_group_heading {
+#pekwiudpvc .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -457,15 +457,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   vertical-align: middle;
 }
 
-#hgzxtmigzh .gt_from_md > :first-child {
+#pekwiudpvc .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#hgzxtmigzh .gt_from_md > :last-child {
+#pekwiudpvc .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#hgzxtmigzh .gt_row {
+#pekwiudpvc .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -484,7 +484,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   overflow-x: hidden;
 }
 
-#hgzxtmigzh .gt_stub {
+#pekwiudpvc .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -497,7 +497,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#hgzxtmigzh .gt_stub_row_group {
+#pekwiudpvc .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -511,15 +511,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   vertical-align: top;
 }
 
-#hgzxtmigzh .gt_row_group_first td {
+#pekwiudpvc .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#hgzxtmigzh .gt_row_group_first th {
+#pekwiudpvc .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#hgzxtmigzh .gt_summary_row {
+#pekwiudpvc .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -529,16 +529,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#hgzxtmigzh .gt_first_summary_row {
+#pekwiudpvc .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#hgzxtmigzh .gt_first_summary_row.thick {
+#pekwiudpvc .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#hgzxtmigzh .gt_last_summary_row {
+#pekwiudpvc .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -548,7 +548,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-bottom-color: #D3D3D3;
 }
 
-#hgzxtmigzh .gt_grand_summary_row {
+#pekwiudpvc .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -558,7 +558,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#hgzxtmigzh .gt_first_grand_summary_row {
+#pekwiudpvc .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -568,7 +568,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-top-color: #D3D3D3;
 }
 
-#hgzxtmigzh .gt_last_grand_summary_row_top {
+#pekwiudpvc .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -578,11 +578,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-bottom-color: #D3D3D3;
 }
 
-#hgzxtmigzh .gt_striped {
+#pekwiudpvc .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#hgzxtmigzh .gt_table_body {
+#pekwiudpvc .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -591,7 +591,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-bottom-color: #D3D3D3;
 }
 
-#hgzxtmigzh .gt_footnotes {
+#pekwiudpvc .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -605,7 +605,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-right-color: #D3D3D3;
 }
 
-#hgzxtmigzh .gt_footnote {
+#pekwiudpvc .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -614,7 +614,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#hgzxtmigzh .gt_sourcenotes {
+#pekwiudpvc .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -628,7 +628,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-right-color: #D3D3D3;
 }
 
-#hgzxtmigzh .gt_sourcenote {
+#pekwiudpvc .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -636,72 +636,72 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#hgzxtmigzh .gt_left {
+#pekwiudpvc .gt_left {
   text-align: left;
 }
 
-#hgzxtmigzh .gt_center {
+#pekwiudpvc .gt_center {
   text-align: center;
 }
 
-#hgzxtmigzh .gt_right {
+#pekwiudpvc .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#hgzxtmigzh .gt_font_normal {
+#pekwiudpvc .gt_font_normal {
   font-weight: normal;
 }
 
-#hgzxtmigzh .gt_font_bold {
+#pekwiudpvc .gt_font_bold {
   font-weight: bold;
 }
 
-#hgzxtmigzh .gt_font_italic {
+#pekwiudpvc .gt_font_italic {
   font-style: italic;
 }
 
-#hgzxtmigzh .gt_super {
+#pekwiudpvc .gt_super {
   font-size: 65%;
 }
 
-#hgzxtmigzh .gt_footnote_marks {
+#pekwiudpvc .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#hgzxtmigzh .gt_asterisk {
+#pekwiudpvc .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#hgzxtmigzh .gt_indent_1 {
+#pekwiudpvc .gt_indent_1 {
   text-indent: 5px;
 }
 
-#hgzxtmigzh .gt_indent_2 {
+#pekwiudpvc .gt_indent_2 {
   text-indent: 10px;
 }
 
-#hgzxtmigzh .gt_indent_3 {
+#pekwiudpvc .gt_indent_3 {
   text-indent: 15px;
 }
 
-#hgzxtmigzh .gt_indent_4 {
+#pekwiudpvc .gt_indent_4 {
   text-indent: 20px;
 }
 
-#hgzxtmigzh .gt_indent_5 {
+#pekwiudpvc .gt_indent_5 {
   text-indent: 25px;
 }
 
-#hgzxtmigzh .katex-display {
+#pekwiudpvc .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#hgzxtmigzh div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#pekwiudpvc div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -764,7 +764,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="c.">c.</h2>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="nueronsfinal.png" class="img-fluid figure-img"></p>
+<p><img src="nueronsfinal.jpg" class="img-fluid figure-img"></p>
 <figcaption>Reaction Speed Sketch</figcaption>
 </figure>
 </div>
