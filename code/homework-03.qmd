@@ -159,4 +159,12 @@ They employed linear regression, both multiple and single, with the single linea
 
 Given that this table informs the creation of the MLR equation model and there is no other figure describing the MLR besides model validation graphs (what I used mistakenly for HW 2), I do not feel that this table does an adequate job of representing the underlying tests. It states that this table a "Pearson's Correlation Matrix", but does not showcase any sort of explanation for what that represents, nor how those values were achieved. It also highlights which correlation scores are significant, but does not explain or show how the correlation scores were translated into p values. I had to look up myseld how some correlation scores could be higher than others but not significant, which shows the failing in the representation.
 
+## c. 
+
+The visual clutter is horrible in this table to be completely honest, to the point where it almost ruins the usability of the graph for me. The only useful piece of information from the table is the first column/row because we are trying to find what variables correlate with SMP to create a regression equation, so the entire rest of the matrix is unneeded for our analysis. The use of bolding to indicate significant correlation values is okay and draws attention to the important values, but suffers from the excessive clutter of the table.
+
+## d.
+
+
+
 
